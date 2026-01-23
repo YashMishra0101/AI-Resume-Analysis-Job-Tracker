@@ -2,22 +2,7 @@
 
 > **Status:** 🔨 Work in Progress
 
-An all-in-one AI-powered platform to simplify and streamline the job search process for candidates. It combines smart resume analysis, application tracking, and community inspiration in one place—solving the fragmented job search experience.
-
----
-
-## 📋 Table of Contents
-- [Core Features](#core-features)
-- [Tech Stack](#tech-stack)
-- [Features Overview](#features-overview)
-  - [Authentication & Profile](#foundation-user-authentication--profile)
-  - [Profile Management](#foundation-profile-management)
-  - [ATS Resume Checker](#feature-1-ats-resume-checker)
-  - [Resume Gallery](#feature-2-resume-gallery)
-  - [Job Tracker](#feature-3-job-tracker)
-- [Tech Stack Deep Dive](#tech-stack--deep-dive)
-- [Project Execution Plan](#-project-execution-plan)
-- [Purpose](#-summary-purpose-of-this-platform)
+An all in one AI powered platform that helps candidates manage their job search in a simple and organized way. It combines smart AI resume analysis, job application tracking and a Resume Gallery where users can explore and learn from real resumes, all in one place, so job seekers do not have to manage multiple tools.
 
 ---
 
