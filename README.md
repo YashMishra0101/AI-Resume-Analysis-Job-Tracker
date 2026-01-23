@@ -1,4 +1,4 @@
-# 🚧 AI-Powered Resume Analysis & Job Tracking System
+# AI-Powered Resume Analysis & Job Tracking System
 
 > **Status:** 🔨 Work in Progress
 
