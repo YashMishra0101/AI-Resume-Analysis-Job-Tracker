@@ -58,4 +58,5 @@ next-env.d.ts
 # Private planning documents (not for public repo)
 IMPLEMENTATION_PLAN.md
 PROJECT_EXECUTION_PLAN.md
+PROJECT_STRUCTURE.md
 LICENSE
