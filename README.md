@@ -18,6 +18,19 @@ An all in one AI powered platform that helps candidates manage their job search 
 
 ---
 
+## 🧑‍💻 TECHNICAL HIGHLIGHTS
+
+This project goes beyond a typical MERN stack application. Here are the key differentiators:
+
+| Feature | Technology | What It Does |
+|---------|------------|--------------|
+| **AI Integration** | Google Gemini API | Intelligent resume analysis, ATS scoring, and personalized interview questions |
+| **Caching & Rate Limiting** | Redis | High-performance caching, session management, and API rate limiting for security |
+| **System Design** | Scalable Architecture | Modular folder structure, clean code patterns, and database design best practices |
+| **Web Security** | Helmet.js, Zod, JWT | Security headers, input validation, XSS prevention, and secure authentication |
+
+---
+
 ## 🛠️ TECH STACK
 
 ### Quick Overview
@@ -34,20 +47,7 @@ An all in one AI powered platform that helps candidates manage their job search 
 
 ---
 
-## 🚀 TECHNICAL HIGHLIGHTS
-
-This project goes beyond a typical MERN stack application. Here are the key differentiators:
-
-| Feature | Technology | What It Does |
-|---------|------------|--------------|
-| **AI Integration** | Google Gemini API | Intelligent resume analysis, ATS scoring, and personalized interview questions |
-| **Caching & Rate Limiting** | Redis | High-performance caching, session management, and API rate limiting for security |
-| **System Design** | Scalable Architecture | Modular folder structure, clean code patterns, and database design best practices |
-| **Web Security** | Helmet.js, Zod, JWT | Security headers, input validation, XSS prevention, and secure authentication |
-
----
-
-## �🔐 FOUNDATION: USER AUTHENTICATION & PROFILE
+## 🔐 FOUNDATION: USER AUTHENTICATION & PROFILE
 
 ### Signup Options
 
