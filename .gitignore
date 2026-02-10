@@ -56,13 +56,4 @@ public/uploads/
 next-env.d.ts
 
 # Private planning documents (not for public repo)
-IMPLEMENTATION_PLAN.md
-PROJECT_EXECUTION_PLAN.md
-PROJECT_STRUCTURE.md
-SOME_IDEAS.md
-CAREER_ANALYSIS.md
-JOB_APPLICATION_STRATEGY.md
-SOME_IDEAS.md
-
-# License
-LICENSE
+docs

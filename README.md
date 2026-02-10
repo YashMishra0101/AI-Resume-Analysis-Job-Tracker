@@ -1,238 +1,163 @@
 # AI-Powered Resume Analysis & Job Tracking System
 
-> **Status:** 🔨 Work in Progress
+> **🚧 Status: Work in Progress**
+> This project is actively under development. Features, UI, and documentation are being built and refined.⭐Star the repo to follow along.
 
-An all in one AI powered platform that helps candidates manage their job search in a simple and organized way. It combines smart AI resume analysis, job application tracking and a Resume Gallery where users can explore and learn from real resumes, all in one place, so job seekers do not have to manage multiple tools.
-
----
-
-## 🧑‍💻 CORE FEATURES
-
-### Quick Overview of MVP
-
-|  | Feature | Description |
-|---|---------|-------------|
-| 1 | **ATS Resume Checker** | Upload PDF, paste JD/role, AI analysis, Score, Suggestions + Interview Questions |
-| 2 | **Resume Gallery** | Share resumes/templates, view others, like & filter |
-| 3 | **Job Tracker** | Track applications, stats, reminders |
+An all-in-one AI-powered platform that helps job seekers manage their entire job search, from resume optimization to application tracking, in one place.
 
 ---
 
-## 🧑‍💻 TECHNICAL HIGHLIGHTS
+## 🧐 The Problem
 
-This project goes beyond a typical MERN stack application. Here are the key differentiators:
+Job seekers juggle multiple tools: one for resume feedback, another for tracking applications and random templates scattered across the internet. There's no single platform that combines **AI-driven resume analysis**, **application tracking** and **resume inspiration** into a unified experience.
 
-| Feature | Technology | What It Does |
-|---------|------------|--------------|
-| **AI Integration** | Google Gemini API | Intelligent resume analysis, ATS scoring, and personalized interview questions |
-| **Caching & Rate Limiting** | Redis | High-performance caching, session management, and API rate limiting for security |
-| **System Design** | Scalable Architecture | Modular folder structure, clean code patterns, and database design best practices |
-| **Web Security** | Helmet.js, Zod, JWT | Security headers, input validation, XSS prevention, and secure authentication |
+## 💡 The Solution
+
+This platform brings everything together:
+
+- **Upload your resume** → Get instant AI-powered ATS scoring, keyword analysis and personalized interview questions
+- **Track your applications** → Monitor status, set email reminders and view dashboard stats
+- **Browse real resumes** → Learn from others, find inspiration and share your own
 
 ---
 
-## 🛠️ TECH STACK
+## ✨ Core Features
 
-### Quick Overview
+### 📄 ATS Resume Checker
+Upload your resume (PDF) and paste a job description — the AI analyzes your resume and returns:
+- **ATS Score** (0–100) with section-wise breakdown
+- **Keyword Match** — matched vs missing keywords
+- **Formatting Check** — flags ATS-unfriendly elements
+- **Improvement Suggestions** — actionable tips to boost your score
+- **Interview Questions** — 10–50 personalized questions based on your resume
 
-| Category | Technologies |
-|---|---|
-| **Frontend** | React 19, Vite, SWC, TailwindCSS, shadcn/ui, React Router v7, TanStack Query, Axios, React Hook Form, Zod, React Hot Toast, Phosphor Icons |
-| **Backend** | Node.js, Express, JWT, argon2, Multer, pdf-parse, node-cron, Nodemailer |
-| **AI** | Google Gemini API (Free: 15 req/min) |
+### 🌐 Resume Gallery
+A community-driven space where users share resumes publicly for inspiration:
+- Browse, preview, and like resumes
+- Filter by Most Liked or Newest
+- View uploader profiles and their public resumes
+
+### 📊 Job Application Tracker
+Keep every application organized in one dashboard:
+- Track company, role, status, dates, and notes
+- 9 status stages (Applied → Interview → Offer/Rejected)
+- **Email reminders** for upcoming interviews
+- Dashboard stats: total apps, monthly activity, success rate
+
+### 🔐 Authentication
+- Email/Password signup with email verification
+- Google OAuth (one-click login)
+- Guest Mode — try the ATS checker without signing up
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technologies |
+|-------|-------------|
+| **Frontend** | React 19, Vite, SWC, TailwindCSS 4, shadcn/ui, React Router v7, TanStack Query, React Hook Form, Zod, Axios |
+| **Backend** | Node.js, Express, JWT (Access + Refresh), argon2, Multer, pdf-parse, node-cron |
+| **AI** | Google Gemini API |
 | **Database** | MongoDB Atlas + Mongoose |
-| **Storage** | Cloudinary |
-| **Email** | Resend |
-| **Hosting** | Vercel (Frontend) + Render (Backend) |
+| **Testing** | Vitest, React Testing Library, Supertest |
+| **Storage** | Cloudinary (images + PDFs) |
+| **Email** | Resend (via Nodemailer) |
+| **Hosting** | Vercel (Frontend) · Render (Backend) · UptimeRobot (Keep-Alive) |
 
 ---
 
-## 🔐 FOUNDATION: USER AUTHENTICATION & PROFILE
+## 🏗️ Architecture
 
-### Signup Options
+```
+Frontend (React)  →  Backend (Express API)  →  MongoDB Atlas
+                           ↓
+                    Google Gemini API (AI Analysis)
+                    Cloudinary (File Storage)
+                    Resend (Email Service)
+```
 
-**Email + Password**
-User enters Name, Email, Password. Account created. Verification email sent. After verification → Main landing page.
+**Backend Pattern:** Route → Controller → Service → Model
 
-**Google Login**
-One-click signup/login using Google OAuth. No password needed. Account linked to Google profile.
+- Controllers handle HTTP (thin layer)
+- Services contain business logic (testable)
+- Models define database schemas
 
-**Guest Mode**
-Try the app without signup. **Only ATS Resume Checker feature is available.** Other features require full account.
+**Frontend Pattern:** Feature-based module structure
 
-### Login
-- Email + Password OR Google OAuth
-- JWT tokens (Access + Refresh)
-- Redirect to the main page after successful verification
-
----
-
-## 👤 FOUNDATION: PROFILE MANAGEMENT
-
-After signup or login, users can manage their profile:
-
-### Profile Settings
-- **Update Name** — Change display name anytime
-- **Upload Profile Image** — Upload or change profile picture (JPG/PNG, max 2MB)
-- **Change Email** — Update email address (requires verification of new email)
-- **Password Management** — Change password (only for email/password accounts, not OAuth users)
-
-All profile changes are saved to MongoDB and reflected immediately across the app.
+- Each feature (auth, resume-checker, job-tracker) is self-contained
+- Components, hooks, services, and pages grouped by feature
 
 ---
 
-## 📄 FEATURE 1: ATS RESUME CHECKER
+## 📁 Project Structure
 
-### How It Works
-1. User uploads resume **(PDF only, max 5MB)**
-2. User enters job details in text box:
-   - **Paste job description** from company website, OR
-   - **Write what kind of job** they are looking for (e.g., "Frontend developer role with React and TypeScript")
-3. AI analyzes resume based on user input using Gemini API
-4. Shows results
-
-### Analysis Results
-- **ATS Score** (0-100)
-- **Keyword Match %**
-- **Section Scores** (Skills, Experience, Education, Formatting)
-- **ATS Formatting Check** — Analyzes font consistency, header structure, and warns about complex graphics that confuse ATS.
-- **Matched Keywords** — Keywords found in resume
-- **Missing Keywords** — Keywords NOT in resume
-- **Issues Found** — Problems with severity (Error/Warning/Info)
-- **Improvement Suggestions** — Specific tips to improve
-- **Personalized Interview Questions** — Top 10–50 questions (users can customize and select the exact number of questions they want) based on their resume, including experience, tech stack, and projects
-
----
-
-## 🌐 FEATURE 2: Resume Gallery
-
-### What It Is
-A social platform where users share their resumes or resume templates publicly for inspiration and visibility.
-*Users have full control over visibility and can optional anonymize personal details.*
-**Benefit:** Job seekers can learn from successful resumes, find templates to improve their own, and showcase their work to potential recruiters.
-
-### Uploading Resume
-- Upload PDF resume
-
-### Browsing Resumes
-- View grid of public resumes
-- Filter by: Most Liked / Newest
-- Click to preview resume
-- Like resumes others find helpful
-- View uploader's profile
-- Each resume card shows uploader's avatar + name
-- Click to visit their profile
-- See all their public resumes
+```
+ai-resume-job-tracker/
+├── client/                    # React + Vite frontend
+│   └── src/
+│       ├── components/        # Shared UI components
+│       ├── features/          # Feature modules (auth, resume, jobs)
+│       ├── hooks/             # Global custom hooks
+│       ├── lib/               # Axios, query client, utilities
+│       ├── routes/            # Route definitions
+│       └── __tests__/         # Frontend tests
+│
+├── server/                    # Express backend
+│   ├── src/
+│   │   ├── config/            # DB, Cloudinary, OAuth, env validation
+│   │   ├── controllers/       # Route handlers
+│   │   ├── middlewares/       # Auth, validation, rate limiting
+│   │   ├── models/            # Mongoose schemas
+│   │   ├── routes/            # API route definitions
+│   │   ├── services/          # Business logic + AI integration
+│   │   ├── utils/             # Helpers (logger, error classes)
+│   │   └── validations/       # Zod schemas
+│   └── __tests__/             # Backend tests (integration + unit)
+│
+├── .gitignore
+└── README.md
+```
 
 ---
 
-## 📊 FEATURE 3: JOB TRACKER
+## 🔒 Security
 
-### Adding Application
-- Company Name
-- Job Title
-- Job URL (optional)
-- Applied Date
-- Status
-- Notes
+This project implements production-level security practices:
 
-### Application Status Options
-- 📝 Applied
-- 👀 Viewed
-- 📞 Interview Scheduled
-- 💻 Technical Round
-- 👔 HR Round
-- ✅ Offer
-- ❌ Rejected
-- ⏸️ On Hold
-- 🚫 Withdrawn
-
-### Email Reminders (Optional)
-- User can **choose to set a reminder** for any application
-- User selects reminder time (24 hours before, 1 hour before, or custom)
-- Email sent at the selected time
-- Email includes: Company, Role, Time, Notes
-
-### Dashboard Stats
-- Total applications
-- Applications this month
-- Success rate and rejection rate (Interviews / Applications)
+- **argon2** password hashing (stronger than bcrypt)
+- **JWT** with HttpOnly cookies (prevents XSS token theft)
+- **Access + Refresh token** rotation
+- **Zod** schema validation on all inputs
+- **Helmet.js** security headers
+- **express-rate-limit** for API protection
+- **Multer** file type/size restrictions
 
 ---
 
-## 🛠️ TECH STACK — Deep Dive
+## ️ Roadmap
 
-### 📦 Package Manager
-
-**pnpm**
-A fast, disk-efficient package manager that uses hard links to save significant disk space. It performs faster than npm and enforces strict dependency management.
-
-### ⚛️ Frontend
-
-**React 19 + Vite + SWC**
-Latest React version for building the user interface. Vite + SWC ensures instant server start and lightning-fast builds using native ESM.
-
-**TailwindCSS 4 + shadcn/ui**
-Tailwind v4 offers a highly optimized engine for styling directly in HTML. shadcn/ui provides accessible, reusable components that I copy into the codebase for full control.
-
-**React Router v7 + TanStack Query**
-Router v7 handles complex routing with improved type safety. TanStack Query v5 automates data fetching, caching, and background server-state synchronization.
-
-**React Hook Form + Zod + Axios**
-Hook Form manages complex forms with minimal re-renders, while Zod ensures rigorous schema validation. Axios handles HTTP requests with built-in interceptors.
-
-**React Hot Toast**
-Lightweight toast notification library for displaying success, error, and info messages. Simple API with beautiful default styling and full customization options.
-
-**Phosphor Icons**
-Flexible icon family with 6000+ icons in multiple weights (thin, light, regular, bold, fill). Provides consistent, high-quality icons for all UI elements.
-
-### 🖥️ Backend
-
-**Node.js + Express**
-Event-driven architecture for running JS on the server. Express provides a minimal, flexible framework for building APIs and managing middleware.
-
-**JWT + argon2**
-Stateless authentication using secure JSON Web Tokens. argon2 is a memory-hard hashing algorithm significantly more secure than bcrypt against brute-force attacks.
-
-**Multer + pdf-parse + node-cron**
-Multer handles file uploads, `pdf-parse` extracts text from resume PDFs for AI, and `node-cron` schedules automated interview email reminders.
-
-### 🤖 AI & Data
-
-**Google Gemini API**
-Google's AI model that reads resumes and suggests answers.
-* **Free:** The system gets 15 requests per minute for free (enough for this project).
-* **Paid:** Only if thousands of users hit it instantly.
-
-**MongoDB Atlas + Mongoose**
-Database to save user data and stats.
-* **Free:** 512MB storage is free forever (enough for 10,000+ users).
-* **Paid:** Only if the app stores huge amounts of data.
-
-### ☁️ Infrastructure
-
-**Cloudinary**
-Where the app saves profile photos and resume PDFs.
-* **Free:** The platform gets 25GB of storage/bandwidth per month.
-* **Paid:** Only if there are tons of HD images/videos.
-
-**Resend (via Nodemailer)**
-Service to send emails (like "Verify account").
-* **Free:** 3,000 emails per month (100 per day).
-* **Paid:** Only if the app sends more than 3,000 emails/month.
-
-**Vercel + Render**
-Where the website lives on the internet.
-* **Vercel (Frontend):** Free for personal projects.
-* **Render (Backend):** Free tier available. The server automatically pauses to save resources after 15 minutes of inactivity (it wakes up automatically when a user visits).
-* **Paid:** Only if 24/7 uptime without pausing is needed.
-
+- [x] Project planning & architecture design
+- [ ] Project foundation setup
+- [ ] User authentication (Email + Google OAuth)
+- [ ] Profile management + Cloudinary integration
+- [ ] ATS Resume Checker with Gemini AI
+- [ ] Resume Gallery (upload, browse, like)
+- [ ] Job Application Tracker with dashboard
+- [ ] Email reminders (node-cron + Resend)
+- [ ] Guest mode
+- [ ] Testing (Vitest + Supertest)
+- [ ] Deployment (Vercel + Render)
 
 ---
 
-## 📝 Note
+## 👨‍💻 Author
 
-This project is built for learning, job preparation, and portfolio purposes.
-The repository is public so recruiters and peers can review my work and
-development progress.
+**Yash Mishra**
+
+- GitHub: [@YashMishra0101](https://github.com/YashMishra0101)
+- LinkedIn: [Yash Mishra](https://www.linkedin.com/in/yash-mishra-356280223/)
+- X (Twitter): [@YashRKMishra1](https://x.com/YashRKMishra1)
+
+---
+
+> This project is built for learning, job preparation and portfolio purposes. The repository is public so recruiters and peers can review my work and development progress.
